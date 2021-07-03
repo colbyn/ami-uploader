@@ -8,6 +8,7 @@ homepage = "https://github.com/colbyn/ami-uploader"
 repository = "https://github.com/colbyn/ami-uploader"
 keywords = ['aws', 'cloud', 'ec2', 'vm']
 categories = ['command-line-utilities']
+description = "Amazon machine image uploader & other miscellaneous utilities"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
