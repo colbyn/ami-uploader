@@ -1,0 +1,18 @@
+[package]
+name = "ami-uploader"
+version = "0.1.0"
+authors = ["Colbyn Wadman <hello@colbyn.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = "1.8.0"
+rusoto_core = "0.47.0"
+rusoto_s3 = "0.47.0"
+rusoto_ec2 = "0.47.0"
+structopt = "0.3.21"
+indicatif = "0.16.2"
+console = "0.14.1"
+rand = "0.8.4"
+futures = "0.3.15"
