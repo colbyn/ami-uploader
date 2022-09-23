@@ -50,6 +50,11 @@ struct AmiUploader {
     /// (and obviously be supported by AWS).
     #[structopt(short, long, parse(from_os_str))]
     image: PathBuf,
+    /// Enhanced Network Adapter support
+    ///
+    /// Images that support ENA networking have to have it enabled.
+    #[structopt(long)]
+    ena: bool,
     /// Name of the new AMI image
     #[structopt(short, long)]
     name: String,
@@ -149,6 +154,7 @@ async fn run_upload_cmd(upload: AmiUploader) {
     let ec2_client = rusoto_ec2::Ec2Client::new(region);
     let source_path = upload.image;
     let new_image_name = upload.name;
+    let new_image_ena = upload.ena;
     let file_name = source_path
         .file_name()
         .expect("file extention")
@@ -178,7 +184,7 @@ async fn run_upload_cmd(upload: AmiUploader) {
             &ec2_client,
             &dest_bucket,
             &dest_object_key,
-            format
+            format,
         )
     })
     .await;
@@ -187,7 +193,7 @@ async fn run_upload_cmd(upload: AmiUploader) {
     })
     .await;
     let ami_id = log_section([4, total_steps], "Registering new AWS AMI image...", || {
-        ops::ec2_register_image(&ec2_client, &snap_task_id, &new_image_name)
+        ops::ec2_register_image(&ec2_client, &snap_task_id, &new_image_name, &new_image_ena)
     })
     .await;
     println!(

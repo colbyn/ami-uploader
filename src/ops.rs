@@ -84,6 +84,7 @@ pub async fn ec2_register_image(
     client: &Ec2Client,
     snapshot_id: &SnapshotId,
     image_name: &str,
+    image_ena: &bool,
 ) -> ImageId {
     let block_device_mappings = rusoto_ec2::BlockDeviceMapping{
         device_name: Some(String::from("/dev/sda1")),
@@ -102,6 +103,7 @@ pub async fn ec2_register_image(
             block_device_mappings
         ]),
         name: image_name.to_owned(),
+        ena_support: Some(image_ena.to_owned()),
         ..Default::default()
     };
     return client.register_image(request)
