@@ -69,17 +69,6 @@ static PACKAGES: &[&str] = &[
     "acorn-dynamic-import",
 ];
 
-static COMMANDS: &[&str] = &[
-    "cmake .",
-    "make",
-    "make clean",
-    "gcc foo.c -o foo",
-    "gcc bar.c -o bar",
-    "./helper.sh rebuild-cache",
-    "make all-clean",
-    "make test",
-];
-
 static LOOKING_GLASS: console::Emoji<'_, '_> = console::Emoji("🔍  ", "");
 static TRUCK: console::Emoji<'_, '_> = console::Emoji("🚚  ", "");
 static CLIP: console::Emoji<'_, '_> = console::Emoji("🔗  ", "");
